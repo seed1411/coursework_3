@@ -17,11 +17,21 @@ class Operation:
                 )
 
     def date_output(self):
+        """
+        Конвертация даты произведенной операции
+        :return: дата в формате ДД.ММ.ГГ
+        """
         date = datetime.strptime(self.date[:10], "%Y-%m-%d")
         correct_date = date.strftime("%d.%m.%Y")
         return correct_date
 
-
+    def masked_card(self):
+        """
+        Шифровка номера карты отправителся в формате ХХХХ ХХ** **** ХХХХ
+        :return: зашифрованный номер карты
+        """
+        card = self.translation_from[-16:]
+        return card[0:4] + " " + card[4:6] + "** ****" + card[12:]
 
 
 
