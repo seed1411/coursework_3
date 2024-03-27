@@ -1,19 +1,23 @@
 from datetime import datetime
+
+
 class Operation:
 
-    def __init__(self, date, description, operation_amount, translation_from=None, translation_to=None, ):
+    def __init__(self, date, description, amount, currency, translation_from=None, translation_to=None, ):
         self.date = date
         self.description = description
         self.translation_from = translation_from
         self.translation_to = translation_to
-        self.operation_amount = operation_amount
+        self.amount = amount
+        self.currency =currency
 
     def __repr__(self):
         return (f'Дата перевода = {self.date},\n'
                 f'Описание операции = {self.description},\n'
                 f'Откуда перевод = {self.translation_from},\n'
                 f'Куда перевод = {self.translation_to},\n'
-                f'Сумма перевода, валюта = {self.operation_amount}'
+                f'Сумма перевода = {self.amount}\n'
+                f'Вид валюты = {self.currency}'
                 )
 
     def date_output(self):
@@ -41,6 +45,12 @@ class Operation:
         card = self.translation_to[-4]
         return "**" + card
 
-
+    def output_result(self):
+        """
+        Вывод итогового результата
+        """
+        return (f"{self.date_output()} {self.description}\n"
+                f"{self.masked_invoice_sender()}-> {self.masked_invoice_recipient()}\n"
+                f"{self.amount} {self.currency}")
 
 
