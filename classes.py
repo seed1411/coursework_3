@@ -25,13 +25,21 @@ class Operation:
         correct_date = date.strftime("%d.%m.%Y")
         return correct_date
 
-    def masked_card(self):
+    def masked_invoice_sender(self):
         """
-        Шифровка номера карты отправителся в формате ХХХХ ХХ** **** ХХХХ
-        :return: зашифрованный номер карты
+        Шифровка номера счета отправителся в формате ХХХХ ХХ** **** ХХХХ
+        :return: зашифрованный номер счета
         """
         card = self.translation_from[-16:]
         return card[0:4] + " " + card[4:6] + "** ****" + card[12:]
+
+    def masked_invoice_recipient(self):
+        """
+        Шифровка номера получателя в формате **ХХХХ
+        :return: зашифрованные шесть последних цифр счета отправителя
+        """
+        card = self.translation_to[-4]
+        return "**" + card
 
 
 
