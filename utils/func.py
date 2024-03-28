@@ -14,7 +14,7 @@ def load_operations():
 def sorting_of_executed():
     """
     Сортирует все операции на выявление выполненных и не выполненных
-    :return: список выполненных операций
+    :return: список выполненных операций отсортированных от недавних до ранних
     """
     executed_operations = []
     operations = load_operations()
@@ -24,7 +24,9 @@ def sorting_of_executed():
     for value in executed_operations:
         if value == None:
             executed_operations.remove(value)
-    return executed_operations
+    sorted_date = sorted(executed_operations, key= lambda x: x["date"], reverse=True)
+    return sorted_date
+
 
 
 

@@ -9,7 +9,7 @@ class Operation:
         self.translation_from = translation_from
         self.translation_to = translation_to
         self.amount = amount
-        self.currency =currency
+        self.currency = currency
 
     def __repr__(self):
         return (f'Дата перевода = {self.date},\n'
