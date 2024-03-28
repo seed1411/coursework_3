@@ -25,32 +25,41 @@ class Operation:
         Конвертация даты произведенной операции
         :return: дата в формате ДД.ММ.ГГ
         """
-        date = datetime.strptime(self.date[:10], "%Y-%m-%d")
-        correct_date = date.strftime("%d.%m.%Y")
-        return correct_date
+        date = self.date
+        if date is not None:
+            date = datetime.strptime(self.date[:10], "%Y-%m-%d")
+            correct_date = date.strftime("%d.%m.%Y")
+            return correct_date
+        return ""
 
     def masked_invoice_sender(self):
         """
         Шифровка номера счета отправителся в формате ХХХХ ХХ** **** ХХХХ
         :return: зашифрованный номер счета
         """
-        card = self.translation_from[-16:]
-        return card[0:4] + " " + card[4:6] + "** ****" + card[12:]
+        if self.translation_from is not None:
+            card = self.translation_from.split()
+            number_card = str(card[-1])
+            if len(number_card) == 20:
+                return " ".join(card[:-1]) + " **" + number_card[-4:]
+            return ' '.join(card[:-1]) + " " + number_card[:4] + " " + number_card[4:6] + "** **** " + number_card[12:]
+        return ""
 
     def masked_invoice_recipient(self):
         """
         Шифровка номера получателя в формате **ХХХХ
         :return: зашифрованные шесть последних цифр счета отправителя
         """
-        card = self.translation_to[-4]
-        return "**" + card
+        card = self.translation_to.split()
+        number_card = card[-1]
+        return " ".join(card[:-1]) + " **" + number_card[-4:]
 
     def output_result(self):
         """
         Вывод итогового результата
         """
         return (f"{self.date_output()} {self.description}\n"
-                f"{self.masked_invoice_sender()}-> {self.masked_invoice_recipient()}\n"
+                f"{self.masked_invoice_sender()} -> {self.masked_invoice_recipient()}\n"
                 f"{self.amount} {self.currency}")
 
 
