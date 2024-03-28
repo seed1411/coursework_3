@@ -34,7 +34,7 @@ class Operation:
 
     def masked_invoice_sender(self):
         """
-        Шифровка номера счета отправителся в формате ХХХХ ХХ** **** ХХХХ
+        Шифровка номера счета отправителя в формате ХХХХ ХХ** **** ХХХХ
         :return: зашифрованный номер счета
         """
         if self.translation_from is not None:
