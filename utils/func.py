@@ -1,4 +1,5 @@
 import json
+import pathlib
 
 
 def load_operations():
@@ -6,7 +7,8 @@ def load_operations():
     Чтение файла JSON с операциями
     :return: список операций в формате dict
     """
-    with open("operations.json", encoding="utf-8") as file:
+    path = pathlib.Path(__file__).parent.parent.joinpath("data").joinpath("operations.json")
+    with open(path, encoding="utf-8") as file:
         operations = json.load(file)
         return operations
 
