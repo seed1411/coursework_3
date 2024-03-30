@@ -1,5 +1,6 @@
 from utils.classes import Operation
 
+
 operation = Operation("2018-09-12T21:27:25.241689", "Перевод организации", "67314.70", "руб.",
                       "Visa Platinum 1246377376343588", "Счет 14211924144426031657")
 operation_1 = Operation(None, "Перевод организации", "67314.70", "руб.",

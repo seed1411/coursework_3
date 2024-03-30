@@ -1,11 +1,7 @@
 from utils.func import sorting_of_executed
 from utils.classes import Operation
 
-info = sorting_of_executed()
-
-counter = 0
-
-for element in info:
+for element in sorting_of_executed():
     operation = Operation(
         element["date"],
         element["description"],
@@ -14,11 +10,7 @@ for element in info:
         element.get('from'),
         element["to"]
     )
-    if counter == 5:
-        break
-    else:
-        counter += 1
-        print(operation.output_result() + "\n")
+    print(operation.output_result() + "\n")
 
 
 
